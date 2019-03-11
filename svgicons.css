@@ -1,0 +1,83 @@
+.soc {
+  display: block;
+  font-size: 0;
+}
+.soc div {
+  display: inline-block;
+  border: 0px solid red;
+  margin: 0px;
+}
+.soc a, .soc svg {
+  display: inline-block;
+}
+.soc a {
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+
+.expandonhover:hover {
+  border-radius: 100%;
+  color: #ffffff;
+  fill: #ffffff;
+  transform: scale(1.25);
+  transition: background-color 0.5s, transform 0.5s ease-out;
+  border-bottom-width: 0px;
+}
+
+
+.mail {
+  fill: #007aff;
+}
+.mail:hover {
+  background: #007aff;
+}
+
+.github {
+  fill: #000;
+}
+.github:hover {
+  background: #000;
+}
+
+.linkedin {
+  fill: #007bb5;
+}
+.linkedin:hover {
+  background: #007bb5;
+}
+
+.stackoverflow {
+  fill: #ef8236;
+}
+.stackoverflow:hover {
+  background: #ef8236;
+}
+
+.twitter {
+  fill: #00acee;
+}
+.twitter:hover {
+  background: #00acee;
+}
+
+.vimeo {
+  fill: #86c9ef;
+}
+.vimeo:hover {
+  background: #86c9ef;
+}
+
+.youtube {
+  fill: #c4302b;
+}
+.youtube:hover {
+  background: #c4302b;
+}
+
+.codepen {
+  fill: #000;
+}
+.codepen:hover {
+  background: #000;
+}

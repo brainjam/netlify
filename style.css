@@ -1,0 +1,38 @@
+h1, h2, h3
+{
+    font-weight: 400;
+}
+
+h3
+{
+    letter-spacing: 0.35em
+}
+
+body 
+{
+    margin: 2em 10% ;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    //background-color: rgb(204,255,153);
+    //border-left: solid rgb(194,245,143) 0.3em;
+    padding-left: 1em ;
+}
+
+div.code {font-family: "courier"}
+
+img { border-style:none;
+    border-width:1px;
+    border-color:#000;
+    max-width:100%
+}
+
+a { text-decoration:none;
+    //border-bottom: 5px solid rgb(194,245,143); }
+    
+a:hover {   border-bottom: 5px solid #000;}
+
+.quotation { font-style:italic }
+.quotee { font-style:italic; text-align:right }
+
+
