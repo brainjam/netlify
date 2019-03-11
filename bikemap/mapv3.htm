@@ -44,7 +44,7 @@ function initMap() {
           getTileUrl: function (coord,zoom) {
             //console.log(`${coord}--${zoom}`) ;
             const dim = Math.pow(2,zoom) ;
-            return "//brainjam.ca/bikemap/tile"+zoom+"-"+ (dim*mod(coord.y,dim)+mod(coord.x,dim))+".jpg";
+            return "tile"+zoom+"-"+ (dim*mod(coord.y,dim)+mod(coord.x,dim))+".jpg";
         } ,
           tileSize: new google.maps.Size(256, 256),
                     maxZoom: 5,
