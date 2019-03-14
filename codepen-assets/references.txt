@@ -1,1 +1,13 @@
 A list of pages that reference material in this directory
+
+https://codepen.io/brainjam/pen/daoWNo
+ - Transformed-elliptic-function-period-tile-2048.png
+
+https://codepen.io/brainjam/pen/daPGGr
+ - Aurora-seamless.jpg
+
+https://codepen.io/brainjam/pen/gBZyGm
+ - gl-matrix-1.3.7.js
+
+http://jsfiddle.net/hedzys6r/
+ - gl-matrix-1.3.7.js
