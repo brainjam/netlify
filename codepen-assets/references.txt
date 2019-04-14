@@ -9,5 +9,5 @@ https://codepen.io/brainjam/pen/daPGGr
 https://codepen.io/brainjam/pen/gBZyGm
  - gl-matrix-1.3.7.js
 
-http://jsfiddle.net/hedzys6r/
+http://jsfiddle.net/hedzys6r/ (used at https://stackoverflow.com/a/5616743/242848)
  - gl-matrix-1.3.7.js
