@@ -1,0 +1,5 @@
+A list of pages that reference material in this directory
+
+https://math.stackexchange.com/questions/5255/is-there-an-explanation-for-the-patterns-formed-by-the-binomial-coefficients-cn
+ - simplicial-numbers
+
