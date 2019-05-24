@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+
+<script type="text/javascript" src="/googleAnalytics.js"></script>
+
+  </head>
+  <body style="font-family:sans-serif">
+    <canvas id="canvas" width="512" height="548">Your browser doesn't support this demo.
+    Try using Chrome, Firefox or Safari</canvas>
+    <p id="frames"></p>
+    <p>
+    <button id="step" onclick="step()">Step</button>
+    <button id="run" onclick="run()">Run</button>
+    <button id="reset" onclick="reset()">Reset</button>
+    <button id="save" onclick="save()">Save Image</button>
+    </p>
+    
+    <p id="fps"></p>
+    <div style="width:512px;">
+    <p>
+      This demo graphically shows the <em>n</em>-th element (modulo 512) of 512 simplicial sequences side by side.
+      Simplicial sequences generalize the
+      familiar "linear", "triangular", and "tetrahedral" number sequences.  A line segment is a 1-simplex,
+      a triangle is a 2-simplex, 
+      a tetrahedron is a 3-simplex, and so on.
+    </p>
+      <p>
+        In general, the <em>n</em>-th <em>d</em>-simplicial number is <strong>C</strong>(<em>n+d-1</em>,<em>d</em>).
+      </p>
+      <p>The white dots in a given frame have coordinates (<em>d</em>,<strong>C</strong>(<em>n+d-1</em>,<em>d</em>) mod 512), 
+      where <em>d</em> runs from 0 through to 511, and the value of <em>n</em> is 
+      displayed at the bottom of the diagram.
+    </p>
+      <p>You can increment <em>n</em> one value at a time by using the Step button.</p>
+      <p>Use the Run button to let <em>n</em> advance automatically.</p>
+      <p>Use the Reset button to reset the sequences.</p>
+      <p>Save a picture in your browser with the Save Image button.  Then download the picture if you want.</p>
+    </div>
+    
+    <script>
+
+      var context = document.getElementById('canvas').getContext('2d');
+      var frames=0;
+      var lastFrames=0;
+      var seconds=0;
+      var cycleID=null ;
+      var running = false ;
+
+      var wave = new Array (512) ;
+
+function reset()
+{
+  running = false ;
+  frames=0 ;
+  for (var i=0; i < wave.length; i++)
+  {
+    wave[i]=0;
+  } 
+  wave[0] = 1 ;
+  advance() ;
+}
+reset() ;  
+running = true ;
+    
+function step()
+{
+  running = false ;
+  advance() ;
+}
+
+function run()
+{
+  running = true ;
+}
+
+function save() {
+  var canvas = document.getElementById('canvas');
+  window.open(canvas.toDataURL("image/png"),'i'+frames);
+}
+
+
+function advance ()
+{
+ for (var i=1; i < wave.length; i++)
+ {
+   wave[i]=(wave[i]+wave[i-1]) % wave.length;
+ } 
+ frames++;
+}
+
+function cycle() {
+ if (running){
+   advance() ;
+ }
+ context.save();
+ context.fillStyle = 'rgb(255,255,255)';
+ for (var i=0; i < wave.length; i++)
+ {
+   context.fillRect(i, 512-wave[i], 2, 2);
+ }
+ 
+ context.font = '20px arial,sans-serif' ;
+ context.fillStyle = 'white' ;
+ context.fillText ('n = '+frames, 10,context.canvas.height-10) ;
+
+ context.strokeStyle = 'rgb(255,0,0)';
+ context.beginPath() ;
+ context.moveTo (0,515) ;
+ context.lineTo (512,515) ;
+ context.lineWidth = 0.5 ;
+ context.stroke() ;
+
+ context.restore();
+}
+cycleID = setInterval(cycle, 20);
+
+function fade() {
+ context.save();
+ context.fillStyle = 'rgba(0,0,0,0.2)';
+ context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+ context.restore();
+}
+setInterval(fade, 40);
+
+function fps()
+{
+ seconds++ ;
+ var fps = document.getElementById('fps');
+ fps.innerHTML='FPS: '+(frames/seconds)+'('+(frames-lastFrames)+')';
+ lastFrames=frames ;
+}
+//setInterval(fps, 1000);
+
+    </script>
+  </body>
+</html>
