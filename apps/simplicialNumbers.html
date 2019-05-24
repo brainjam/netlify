@@ -1,5 +1,4 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
 
@@ -76,10 +75,14 @@ function run()
 }
 
 function save() {
-  var canvas = document.getElementById('canvas');
-  window.open(canvas.toDataURL("image/png"),'i'+frames);
+  const canvas = document.getElementById('canvas');
+  const dataURL = canvas.toDataURL("image/png") ;
+  var iframe = "<iframe width='100%' height='100%' src='" + dataURL + "'></iframe>"
+  var x = window.open("",'i'+frames);
+  x.document.open();
+  x.document.write(iframe);
+  x.document.close();
 }
-
 
 function advance ()
 {
