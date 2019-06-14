@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Non-Euclidean Tessellations</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+<h1> Non-Euclidean Tessellations </h1>
+<p>
+Welcome to the non-Euclidean tessellations movie page.
+</p>
+<p>
+The term tessellate means 'fit together exactly a number of congruent tiles, leaving no spaces'.  The term non-Euclidean refers to a kind of geometry that goes beyond what we were taught in high school math.  This is a geometry where tiles have sides that are circular arcs, and they are congruent as long as their vertex angles correspond.
+</p>
+
+<p>
+There's a good online introduction to these concepts in
+<a href="https://plus.maths.org/issue43/features/serieswright/">this article</a>.
+</p>
+
+<!--
+<object width="800" height="450" type="application/x-shockwave-flash" data="https://vimeo.com/hubnut/?user_id=user1587055&amp;color=00adef&amp;background=000000&amp;fullscreen=1&amp;slideshow=0&amp;stream=uploaded_videos&amp;id=&amp;server=vimeo.com">
+	<param name="allowfullscreen" value="true" />
+	<param name="allowscriptaccess" value="always" />
+	<param name="movie" value="https://vimeo.com/hubnut/?user_id=user1587055&amp;color=00adef&amp;background=000000&amp;fullscreen=1&amp;slideshow=0&amp;stream=uploaded_videos&amp;id=&amp;server=vimeo.com" />
+</object>
+-->
+<!--
+<iframe  
+ src="//player.vimeo.com/hubnut/user/user1587055/uploaded_videos?color=44bbff&amp;background=000000&amp;slideshow=0&amp;video_title=1&amp;video_byline=1"
+ width="800" height="450" frameborder="0" 
+ webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+</iframe>
+-->
+
+<div id="player"></div>
+<script src="https://luwes.github.io/vimeowrap.js/vimeowrap.js"></script>
+<script src="https://luwes.github.io/vimeowrap.js/vimeowrap.carousel.js"></script>
+<script>
+	vimeowrap('player').setup({
+		urls: [
+			'https://vimeo.com/user1587055'
+		],
+		plugins: {
+			'carousel': {}
+		}
+	});
+</script>
+
+
+<p>
+You can browse through a series of movies in the above widget, or you can browse through
+<a href="https://www.vimeo.com/album/82895"> a Vimeo Album</a>.
+</p>
+
+<p>
+Here's one of the movies broken down into a <a href="noneuclidean/slideshow/slideshow.htm">high resolution slide show</a>.
+</p>
+
+
+
+<script src="/googleAnalytics.js"></script>
+
+  </body>
+</html>
