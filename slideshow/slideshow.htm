@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>Non-Euclidean Slideshow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+.display-container {position:relative}
+
+.button {
+        border:none;
+	    	display:inline-block;
+        outline:0;
+        padding:4px 8px;
+        vertical-align:middle;
+        overflow:hidden;
+        text-decoration:none;
+        color:inherit;
+        background-color:inherit;
+        text-align:center;
+        cursor:pointer;
+        white-space:nowrap;
+        transition: all 200ms ease-in;
+        transform:scale(2);
+      }
+
+.button{white-space:normal}
+.button:hover{color:#000!important;background-color:#ccc8!important;transform:scale(3);transition: all 200ms ease-in;}
+
+.display-left{position:absolute;top:50%;left:5%;}
+.display-right{position:absolute;top:50%;right:5%;}
+.black{color:#fff!important;background-color:#0008!important}
+</style>
+
+<body>
+
+
+<div class="display-container">
+  <img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00001.jpg" style="width:100%">
+  <img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00002.jpg" style="width:100%">
+  <img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00003.jpg" style="width:100%">
+  <img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00004.jpg" style="width:100%">
+  <img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00005.jpg" style="width:100%">
+  <img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00006.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00007.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00008.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00009.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00010.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00011.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00012.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00013.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00014.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00015.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00016.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00017.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00018.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00019.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00020.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00021.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00022.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00023.jpg" style="width:100%">
+<img class="mySlides" src="QuasiFuchsianFig8.13.Stills-00024.jpg" style="width:100%">
+
+  <button class="button black display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="button black display-right" onclick="plusDivs(1)">&#10095;</button>
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
+<script src="/googleAnalytics.js"></script>
+
+</body>
+</html>
