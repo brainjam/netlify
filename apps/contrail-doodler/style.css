@@ -1,5 +1,28 @@
 body {
-	background-color: #cccccc;
-	margin: 0px;
-	overflow: hidden;
+  background-color: #cccccc;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#helpbox {
+  position: absolute;
+  top: 0px;
+  padding: 10px;
+
+  color: #ffffff;
+  background-color: #ffffff22 ;
+  font-family: sans-serif;
+  font-size: 18px;
+  text-shadow: rgba(0, 0, 0, 0.75) 2px 2px 10px ;  
+  transition: visibility 1s, opacity 1s ;
+}
+
+#dismiss {
+  position: absolute;
+  right: 10px;
+  cursor: default ;
+}
+
+#dismiss:hover {
+  color: black ;
 }

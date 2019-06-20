@@ -1,6 +1,6 @@
 "use strict";
 
-var queue = [ ];
+var queue = [];
 
 var mouseDown = 0;
 
@@ -16,36 +16,18 @@ var body = doc.body;
 var win = window;
 var canvas = body.children[0];
 var ctx = canvas.getContext("2d");
-var width ;
-var height ;
+var width;
+var height;
 var lastX = width / 2;
 var lastY = height / 2;
 var math = Math;
 
 onWindowResize();
 
-var backgroundColor='#00bfff' ;
+var backgroundColor = "#00bfff";
 
-function fillTextMultiLine(ctx, text, x, y) {
-  var lineHeight = ctx.measureText("M").width * 1.2;
-  var lines = text.split("\n");
-  for (var i = 0; i < lines.length; ++i) {
-    ctx.fillText(lines[i], x, y);
-    y += lineHeight;
-  }
-}
-
-ctx.fillStyle = backgroundColor ;
+ctx.fillStyle = backgroundColor;
 ctx.fillRect(0, 0, width, height);
-ctx.fillStyle = 'red' ;
-ctx.font = "30px Arial";
-ctx.textAlign = "center";
-ctx.fillText(`Drag your mouse to draw`,width/2, height/2);
-ctx.fillText(`Press S to download a snapshot`,width/2, 30+height/2);
-const helptext = 
-      `Drag your mouse to draw
-Press S to download a snapshot`
-//fillTextMultiLine(ctx,helptext,width/2,height/2) ;
 
 doc.onmousemove = mousemove;
 doc.onmouseup = function() {
@@ -59,31 +41,36 @@ doc.onmousedown = function(event) {
 
 doc.onkeydown = function(event) {
   var key = event.keyCode;
-  if (key == 83) saveImage() ;
+  if (key == 83) saveImage();
   if (key == 32) background_active = !background_active;
   if (key == 77) multiBrush = !multiBrush;
 };
 
-	window.addEventListener("resize", onWindowResize, false);
+window.addEventListener("resize", onWindowResize, false);
 
 function onWindowResize(event) {
-  width = (canvas.width = win.innerWidth);
-  height = (canvas.height = win.innerHeight);
+  let temp ;
+  if (width){
+    temp = ctx.getImageData(0,0,width,height) ;  
+  }
+  width = canvas.width = win.innerWidth;
+  height = canvas.height = win.innerHeight;
+  if (temp){
+    ctx.putImageData(temp,0,0) ;
+  }
 }
-
 
 //setInterval(zoom, 33);
 
 let request; // in case we want to cancel
-let frame = 0 ;
+let frame = 0;
 animate();
 function animate() {
   request = requestAnimationFrame(animate);
-  if (frame++%2){
-    zoom() ;  
-  }
+  // if (frame++%2){
+  zoom();
+  // }
 }
-
 
 function draw(x, y, radius) {
   ctx.strokeStyle = "black";
@@ -117,13 +104,13 @@ function zoom() {
   if (background_active) {
     {
       ctx.save();
-      ctx.translate(width / 2, height / 2);
-      ctx.scale(1.03, 1.03);
+      ctx.translate(Math.random() + width / 2, Math.random() + height / 2);
+      ctx.scale(1.01, 1.01);
       ctx.translate(-width / 2, -height / 2);
       ctx.drawImage(canvas, 0, 0);
 
-      ctx.globalAlpha = 0.01 ;
-      ctx.fillStyle = backgroundColor ;
+      ctx.globalAlpha = 0.005;
+      ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, width, height);
       ctx.restore();
     }
@@ -134,7 +121,7 @@ function zoom() {
   }
 
   while (queue.length) {
-    const state = queue.shift() ;
+    const state = queue.shift();
     {
       if (multiBrush) {
         xm = state.x % 200;
@@ -152,12 +139,13 @@ function zoom() {
 }
 
 function saveImage() {
-	// see https://stackoverflow.com/a/45789588/242848
-	const link = document.createElement("a");
-	link.setAttribute("download", "contrail-doodler.png");
-	link.setAttribute(
-		"href",
-		canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
-	);
-	link.click();
+  // see https://stackoverflow.com/a/45789588/242848
+  const link = document.createElement("a");
+  zoom() ;
+  link.setAttribute("download", "contrail-doodler.png");
+  link.setAttribute(
+    "href",
+    canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+  );
+  link.click();
 }
