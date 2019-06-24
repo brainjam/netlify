@@ -1,45 +1,41 @@
-"use strict";
+"use strictx";
 
-var queue = [];
+const queue = [ ];
 
-var mouseDown = 0;
+let mouseDown = 0;
 
-var background_active = 1;
-var multiBrush = 1;
+let background_active = 1;
+let multiBrush = 1;
 
-var xm, ym;
-var xb, yb;
-var dx, dy;
+let xm, ym;
+let xb, yb;
+let dx, dy;
 
-var doc = document;
-var body = doc.body;
-var win = window;
-var canvas = body.children[0];
-var ctx = canvas.getContext("2d");
-var width;
-var height;
-var lastX = width / 2;
-var lastY = height / 2;
-var math = Math;
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext("2d");
+let width;
+let height;
+let lastX ;
+let lastY ;
 
 onWindowResize();
 
-var backgroundColor = "#00bfff";
+const backgroundColor = "#00bfff";
 
 ctx.fillStyle = backgroundColor;
 ctx.fillRect(0, 0, width, height);
 
-doc.onmousemove = mousemove;
-doc.onmouseup = function() {
+document.onmousemove = mousemove;
+document.onmouseup = function() {
   mouseDown = 0;
 };
 
-doc.onmousedown = function(event) {
+document.onmousedown = function(event) {
   mouseDown = 1;
   mousemove(event);
 };
 
-doc.onkeydown = function(event) {
+document.onkeydown = function(event) {
   var key = event.keyCode;
   if (key == 83) saveImage();
   if (key == 32) background_active = !background_active;
@@ -53,32 +49,31 @@ function onWindowResize(event) {
   if (width){
     temp = ctx.getImageData(0,0,width,height) ;  
   }
-  width = canvas.width = win.innerWidth;
-  height = canvas.height = win.innerHeight;
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+  //console.log({width,height})
   if (temp){
     ctx.putImageData(temp,0,0) ;
   }
 }
-
-//setInterval(zoom, 33);
 
 let request; // in case we want to cancel
 let frame = 0;
 animate();
 function animate() {
   request = requestAnimationFrame(animate);
-  // if (frame++%2){
+  frame++ ;
   zoom();
-  // }
 }
 
 function draw(x, y, radius) {
+  ctx.save() ;
   ctx.strokeStyle = "black";
   ctx.lineWidth = radius / 7;
   ctx.beginPath();
 
   if (mouseDown) {
-    ctx.arc(x, y, radius, 0, math.PI * 2, 1);
+    ctx.arc(x, y, radius, 0, Math.PI * 2, 1);
   }
 
   ctx.closePath();
@@ -86,6 +81,7 @@ function draw(x, y, radius) {
   ctx.fillStyle = "white";
   ctx.stroke();
   ctx.fill();
+  ctx.restore() ;
 }
 
 function mousemove(event) {
@@ -94,7 +90,7 @@ function mousemove(event) {
 
   const dx = lastX - x;
   const dy = lastY - y;
-  queue.push({ x: x, y: y, r: (math.sqrt(dx * dx + dy * dy) + 1) | 0 });
+  queue.push({ x: x, y: y, r: (Math.sqrt(dx * dx + dy * dy) + 1) | 0 });
 
   lastX = x;
   lastY = y;
@@ -104,12 +100,13 @@ function zoom() {
   if (background_active) {
     {
       ctx.save();
-      ctx.translate(Math.random() + width / 2, Math.random() + height / 2);
+      const xbias = Math.random() ;
+      const ybias = Math.random() ;
+      ctx.translate(xbias + width / 2, ybias + height / 2);
       ctx.scale(1.01, 1.01);
       ctx.translate(-width / 2, -height / 2);
       ctx.drawImage(canvas, 0, 0);
-
-      ctx.globalAlpha = 0.005;
+      ctx.globalAlpha = frame%32 ? .005 : .04;
       ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, width, height);
       ctx.restore();
